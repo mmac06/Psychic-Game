@@ -16,39 +16,45 @@ console.log(winsText);
 var lossesText = document.getElementById("losses-text");
 var remainingText = document.getElementById("remaining-text");
 var guessText = document.getElementById("guess-text");
-
+var userGuess = "";
 // resets the game
-resetGame ()= {
+function resetGame() {
+    guessCount = 9;
+    console.log(guessCount);
+    var winsText = document.getElementById("wins-text");
+    var lossesText = document.getElementById("losses-text");
+    var remainingText = document.getElementById("remaining-text");
+    var guessText = document.getElementById("guess-text");
+    var userGuess = "";  
 
-
-    
 }
+
 
 document.onkeyup = function (event) {
     // record user keystroke
-    var userGuess = event.key;
+    userGuess = event.key.toLowerCase();
     console.log(userGuess);
     // randomize computer choice by linking it to above variable
     var computerGuess = letters[Math.floor(Math.random() * letters.length)];
     console.log(computerGuess);
 
     // if-else clauses that add to wins and losses tallies
-    
+
     if (userGuess === computerGuess) {
         wins++;
-        alert ("Correct!");
+        alert("Correct!");
+        resetGame();
     } else {
-        // alert(guessCount-1 + " Wrong! You suck at this!");
-        guessCount = guessCount-1;
-        // guessText = guessText + userGuess + ", ";
+        guessCount = guessCount - 1;
     }
 
-    if (guessCount === 0) {                
+    if (guessCount === 0) {
         losses++;
+        alert("You lose and are terrible at EVERYTHING!");
         resetGame();
     }
 
-    
+
     // adding text to the div and reporting letters, wins, losses, etc.
 
     remainingText.textContent = "Guesses remaining: " + guessCount;
@@ -57,4 +63,4 @@ document.onkeyup = function (event) {
     guessText.textContent = "Your guesses so far: " + userGuess;
 
 
-    };
+};
